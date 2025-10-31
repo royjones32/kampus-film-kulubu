@@ -10,8 +10,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #f093fb 25%, #4facfe 50%, #00f2fe 75%, #764ba2 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   min-height: 100vh;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .app {
@@ -39,15 +53,19 @@ body {
 }
 
 .app-header h1 {
-  color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #f093fb 25%, #4facfe 50%, #00f2fe 75%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: transform 0.2s;
+  font-weight: 700;
 }
 
 .header-link:hover h1 {
-  color: #764ba2;
+  transform: scale(1.05);
 }
 
 .app-header p {
@@ -119,13 +137,13 @@ body {
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #f093fb;
+  box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.2);
 }
 
 .search-button {
   padding: 0.75rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff8e8e 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -137,7 +155,8 @@ body {
 
 .search-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.5);
+  background: linear-gradient(135deg, #ff5252 0%, #ff7979 50%, #ff8e8e 100%);
 }
 
 .filters {
@@ -170,14 +189,14 @@ body {
 
 .filter-select:hover,
 .filter-input:hover {
-  border-color: #667eea;
+  border-color: #4facfe;
 }
 
 .filter-select:focus,
 .filter-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #00f2fe;
+  box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.2);
 }
 
 .btn-clear-filters {
@@ -230,9 +249,10 @@ body {
 .results-info {
   margin: 1rem 0;
   padding: 0.75rem 1rem;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 6px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid;
+  border-image: linear-gradient(135deg, #667eea 0%, #f093fb 25%, #4facfe 50%, #00f2fe 75%) 1;
 }
 
 .results-info p {
@@ -292,7 +312,10 @@ body {
 }
 
 .tv-card-title:hover {
-  color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .no-image {
@@ -328,7 +351,10 @@ body {
 
 .tv-card-genre {
   font-weight: 600;
-  color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .tv-card-language {
@@ -367,12 +393,13 @@ body {
 }
 
 .btn-detail {
-  background: #667eea;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   color: white;
 }
 
 .btn-detail:hover {
-  background: #5568d3;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  transform: translateY(-2px);
 }
 
 .btn-watchlist {
@@ -402,7 +429,7 @@ body {
 
 .pagination-btn {
   padding: 0.6rem 1.2rem;
-  background: #667eea;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
   border: none;
   border-radius: 6px;
@@ -413,8 +440,9 @@ body {
 }
 
 .pagination-btn:hover:not(:disabled) {
-  background: #5568d3;
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
 }
 
 .pagination-btn:disabled {
@@ -543,7 +571,8 @@ body {
 }
 
 .watchlist-item-content h4:hover {
-  color: #667eea;
+  color: #f093fb;
+  transform: translateX(5px);
 }
 
 .btn-remove {
@@ -619,11 +648,12 @@ body {
 
 .genre-badge {
   padding: 0.4rem 0.8rem;
-  background: #667eea;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   color: white;
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
+  box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
 }
 
 .show-meta {
@@ -645,7 +675,7 @@ body {
 .show-tvmaze-link {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #f093fb 100%);
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -656,7 +686,8 @@ body {
 
 .show-tvmaze-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.5);
+  background: linear-gradient(135deg, #ff5252 0%, #f093fb 50%, #ee5a6f 100%);
 }
 
 .show-episodes {
@@ -709,19 +740,20 @@ body {
 .episode-link {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: #667eea;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   color: white;
   text-decoration: none;
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.2s, transform 0.2s;
+  transition: all 0.2s;
   margin-top: 0.5rem;
 }
 
 .episode-link:hover {
-  background: #5568d3;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
 }
 
 .episode-image {
