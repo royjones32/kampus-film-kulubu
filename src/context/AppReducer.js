@@ -17,7 +17,7 @@ export const initialState = {
   shows: [],
   loading: false,
   error: null,
-  query: 'friends',
+  query: '',
   filters: {
     genre: '',
     language: '',

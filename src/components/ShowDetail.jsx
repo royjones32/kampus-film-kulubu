@@ -100,6 +100,16 @@ const ShowDetail = () => {
                 dangerouslySetInnerHTML={{ __html: show.summary }}
               />
             )}
+            {show.url && (
+              <a 
+                href={show.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="show-tvmaze-link"
+              >
+                🌐 TVMaze'de Diziyi Görüntüle
+              </a>
+            )}
           </div>
         </div>
 
@@ -125,6 +135,16 @@ const ShowDetail = () => {
                         className="episode-summary"
                         dangerouslySetInnerHTML={{ __html: episode.summary }}
                       />
+                    )}
+                    {episode.url && (
+                      <a 
+                        href={episode.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="episode-link"
+                      >
+                        📺 TVMaze'de Görüntüle
+                      </a>
                     )}
                   </div>
                   {episode.image && (

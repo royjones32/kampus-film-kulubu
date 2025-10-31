@@ -12,7 +12,7 @@ const SearchBox = ({ query, onQueryChange, onSearch }) => {
         type="text"
         value={query}
         onChange={(e) => onQueryChange(e.target.value)}
-        placeholder="Dizi ara..."
+        placeholder="Dizi ara... (örn: Breaking Bad, Stranger Things)"
         className="search-input"
       />
       <button type="submit" className="search-button">
