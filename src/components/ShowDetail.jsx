@@ -63,7 +63,7 @@ const ShowDetail = () => {
   return (
     <div className="detail-container">
       <button onClick={() => navigate('/')} className="btn-back">
-        ← Geri
+        🏠 Anasayfa
       </button>
       
       <div className="show-detail">
