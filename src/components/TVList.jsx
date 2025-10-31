@@ -30,3 +30,4 @@ const TVList = ({ shows, currentPage, pageSize, onAddToWatchlist, watchlist }) =
 
 export default TVList;
 
+

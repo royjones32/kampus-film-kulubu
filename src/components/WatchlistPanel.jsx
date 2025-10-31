@@ -55,3 +55,4 @@ const WatchlistPanel = ({ watchlist, onRemoveFromWatchlist, onClearWatchlist }) 
 
 export default WatchlistPanel;
 
+

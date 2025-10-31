@@ -20,3 +20,4 @@ const SortOptions = ({ sortBy, onSortChange }) => {
 
 export default SortOptions;
 
+

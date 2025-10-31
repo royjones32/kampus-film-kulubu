@@ -30,32 +30,3 @@ export const getShowEpisodes = async (id) => {
   }
 };
 
-// Popüler dizileri getir (farklı arama terimleriyle)
-export const getPopularShows = async () => {
-  try {
-    // Birden fazla popüler dizi terimiyle arama yap
-    const queries = ['game of thrones', 'breaking bad', 'stranger things', 'the office', 'better call saul', 'dark'];
-    const allShows = [];
-    const seenIds = new Set();
-
-    for (const query of queries) {
-      try {
-        const response = await axios.get(`${BASE_URL}/search/shows?q=${encodeURIComponent(query)}`);
-        response.data.forEach(item => {
-          if (!seenIds.has(item.show.id)) {
-            seenIds.add(item.show.id);
-            allShows.push(item.show);
-          }
-        });
-      } catch (err) {
-        console.error(`Error fetching shows for ${query}:`, err);
-      }
-    }
-
-    // Karıştır (randomize)
-    return allShows.sort(() => Math.random() - 0.5);
-  } catch (error) {
-    throw new Error(error.response?.data?.message || 'Popüler diziler getirilirken bir hata oluştu');
-  }
-};
-

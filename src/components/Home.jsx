@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { appReducer, initialState, FETCH_INIT, FETCH_SUCCESS, FETCH_FAILURE, SET_QUERY, SET_FILTERS, ADD_WATCHLIST, REMOVE_WATCHLIST, CLEAR_WATCHLIST, SET_PAGE, SET_SORT } from '../context/AppReducer';
 import { loadWatchlistFromStorage } from '../context/AppReducer';
-import { searchShows, getPopularShows } from '../services/api';
+import { searchShows } from '../services/api';
 import { filterShows } from '../utils/filters';
 import { sortShows } from '../utils/sortShows';
 import SearchBox from './SearchBox';
@@ -32,22 +32,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // İlk yüklemede popüler dizileri göster
-    const loadInitialShows = async () => {
-      dispatch({ type: FETCH_INIT });
-      try {
-        const shows = await getPopularShows();
-        dispatch({ type: FETCH_SUCCESS, payload: shows });
-      } catch (error) {
-        dispatch({ type: FETCH_FAILURE, payload: error.message });
-      }
-    };
-    
-    if (!state.query.trim()) {
-      loadInitialShows();
-    } else {
-      fetchShows(state.query);
-    }
+    // İlk yüklemede varsayılan sorgu ile (friends) dizi listesi yükle
+    fetchShows(state.query);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -124,12 +110,6 @@ const Home = () => {
       <div className="main-content">
         <div className="content-area">
           <div className="search-section">
-            {!state.query && (
-              <div className="popular-shows-header">
-                <h2>🎬 Popüler Diziler</h2>
-                <p>Aşağıda popüler diziler görüntülenmektedir. Arama yaparak farklı diziler bulabilirsiniz.</p>
-              </div>
-            )}
             <SearchBox
               query={state.query}
               onQueryChange={handleQueryChange}
