@@ -1,9 +1,10 @@
 import React from 'react';
 import { getAllGenres, getAllLanguages } from '../utils/filters';
 
-const Filters = ({ filters, shows, onFilterChange }) => {
+const Filters = ({ filters, shows, onFilterChange, onClearFilters }) => {
   const genres = getAllGenres(shows);
   const languages = getAllLanguages(shows);
+  const hasActiveFilters = filters.genre || filters.language || filters.minRating;
 
   return (
     <div className="filters">
@@ -55,6 +56,13 @@ const Filters = ({ filters, shows, onFilterChange }) => {
           className="filter-input"
         />
       </div>
+      {hasActiveFilters && (
+        <div className="filter-group">
+          <button onClick={onClearFilters} className="btn-clear-filters">
+            Filtreleri Temizle
+          </button>
+        </div>
+      )}
     </div>
   );
 };

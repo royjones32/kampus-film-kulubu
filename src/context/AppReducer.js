@@ -7,6 +7,7 @@ export const SET_FILTERS = 'SET_FILTERS';
 export const SET_WATCHLIST = 'SET_WATCHLIST';
 export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
 export const SET_PAGE = 'SET_PAGE';
+export const SET_SORT = 'SET_SORT';
 export const ADD_WATCHLIST = 'ADD_WATCHLIST';
 export const REMOVE_WATCHLIST = 'REMOVE_WATCHLIST';
 export const CLEAR_WATCHLIST = 'CLEAR_WATCHLIST';
@@ -22,6 +23,7 @@ export const initialState = {
     language: '',
     minRating: '',
   },
+  sortBy: 'name', // 'name', 'rating', 'premiered'
   watchlist: [],
   currentPage: 1,
   pageSize: 6,
@@ -92,23 +94,36 @@ export const appReducer = (state, action) => {
         currentPage: action.payload,
       };
     
+    case SET_SORT:
+      return {
+        ...state,
+        sortBy: action.payload,
+        currentPage: 1,
+      };
+    
     case ADD_WATCHLIST:
       const showToAdd = action.payload;
       if (state.watchlist.find(s => s.id === showToAdd.id)) {
         return state;
       }
+      const newWatchlist = [...state.watchlist, showToAdd];
+      // LocalStorage'a kaydet
+      localStorage.setItem('watchlist', JSON.stringify(newWatchlist));
       return {
         ...state,
-        watchlist: [...state.watchlist, showToAdd],
+        watchlist: newWatchlist,
       };
     
     case REMOVE_WATCHLIST:
+      const updatedWatchlist = state.watchlist.filter(show => show.id !== action.payload);
+      localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
       return {
         ...state,
-        watchlist: state.watchlist.filter(show => show.id !== action.payload),
+        watchlist: updatedWatchlist,
       };
     
     case CLEAR_WATCHLIST:
+      localStorage.removeItem('watchlist');
       return {
         ...state,
         watchlist: [],
@@ -116,6 +131,17 @@ export const appReducer = (state, action) => {
     
     default:
       return state;
+  }
+};
+
+// LocalStorage'dan watchlist'i yükle
+export const loadWatchlistFromStorage = () => {
+  try {
+    const saved = localStorage.getItem('watchlist');
+    return saved ? JSON.parse(saved) : [];
+  } catch (error) {
+    console.error('Error loading watchlist from storage:', error);
+    return [];
   }
 };
 
