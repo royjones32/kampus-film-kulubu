@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer circle - BMW blue -->
+  <circle cx="50" cy="50" r="48" fill="#0066CC" stroke="#003366" stroke-width="2"/>
+  <!-- Inner white circle -->
+  <circle cx="50" cy="50" r="35" fill="#FFFFFF"/>
+  <!-- BMW-style quadrant divisions -->
+  <path d="M 50 15 Q 50 50 35 50 Q 50 50 50 50 Z" fill="#0066CC" opacity="0.8"/>
+  <path d="M 50 15 Q 50 50 65 50 Q 50 50 50 50 Z" fill="#0066CC" opacity="0.8"/>
+  <path d="M 50 50 Q 50 85 35 50 Q 50 50 50 50 Z" fill="#0066CC" opacity="0.8"/>
+  <path d="M 50 50 Q 50 85 65 50 Q 50 50 50 50 Z" fill="#0066CC" opacity="0.8"/>
+  <!-- Center circle -->
+  <circle cx="50" cy="50" r="8" fill="#0066CC"/>
+</svg>
