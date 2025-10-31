@@ -14,7 +14,7 @@ const TVCard = ({ show, onAddToWatchlist, isInWatchlist }) => {
 
   return (
     <div className="tv-card">
-      <div className="tv-card-image">
+      <div className="tv-card-image" onClick={handleDetail} style={{ cursor: 'pointer' }}>
         {show.image ? (
           <img src={show.image.medium || show.image.original} alt={show.name} />
         ) : (
@@ -22,7 +22,9 @@ const TVCard = ({ show, onAddToWatchlist, isInWatchlist }) => {
         )}
       </div>
       <div className="tv-card-content">
-        <h3 className="tv-card-title">{show.name}</h3>
+        <h3 className="tv-card-title" onClick={handleDetail} style={{ cursor: 'pointer' }}>
+          {show.name}
+        </h3>
         <div className="tv-card-info">
           {show.genres && show.genres.length > 0 && (
             <div className="tv-card-genre">

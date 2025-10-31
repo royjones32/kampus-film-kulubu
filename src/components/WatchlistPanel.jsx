@@ -38,7 +38,9 @@ const WatchlistPanel = ({ watchlist, onRemoveFromWatchlist, onClearWatchlist }) 
               )}
             </div>
             <div className="watchlist-item-content">
-              <h4>{show.name}</h4>
+              <h4 onClick={() => navigate(`/show/${show.id}`)} style={{ cursor: 'pointer' }}>
+                {show.name}
+              </h4>
               <button
                 onClick={() => onRemoveFromWatchlist(show.id)}
                 className="btn-remove"
